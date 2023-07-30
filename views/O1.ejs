@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Form For Requesting Blood</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Please Fill Details Properly:-</h1> 
+        <form action="">
+
+            <label for="Name">Name</label>
+            <input type="text" id="Name" placeholder="Enter Your Name....">
+
+            <label for="Email">Email</label>
+            <input type="text" id="Email" placeholder="Enter Your Email...">
+
+            <label for="Contact">Contact Number</label>
+            <input type="text" id="Contact" placeholder="Enter Your Contact number...">
+
+            <label for="Bloodtype">Blood Type</label>
+            <input type="text" id="Blood" placeholder="Your Blood Type" value="O-">
+
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" placeholder="Enter Your Subject...">
+
+            <label for="message">Any Message</label>
+            <textarea name="message" id="message" placeholder="Enter Your Message" style="height: 200px;"></textarea>
+            <input type="button" value="button" onclick="Send()">
+        </form>
+    </div>
+
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/O1.js"></script>
+
+<!-- footer-->
+<div class="bottom-container">
+    <a class="linkedin" href="https://www.linkedin.com/">LinkedIn</a>
+    <a class="twitter" href="https://twitter.com/">Twitter</a>
+    <a class="koo" href="https://www.koo.com/">Koo</a>
+    <p><p class="copyright">© 2023 BLOOD HUB.</p></p>
+  </div>
+</body>
+</html>

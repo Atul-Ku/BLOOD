@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="Bloods">
+        <div class="container">
+            <h1 class="lg-title"><%= HOSNAME %></h1>
+            <p class="text-light">You can choose Type and Number of units of Blood Needed.<br>Thank You!!! <br>"Team
+                Blood Hub"</p>
+            <h2>Select Blood type & Select Amount Of Blood:-</h2>
+            <div class="Blood-items">
+                <!-- single Blood -->
+                <div class="Blood">
+                    <div class="Blood-content">
+                        <div class="Blood-img">
+                            <img src="/image/A+.jpg" alt="Blood image">
+                        </div>
+                    </div>
+
+                    <div class="Blood-info">
+                        <div class="Blood-info-top">
+                            <h2 class="sm-title">A+ Group</h2>
+
+                        </div>
+                        <a href="#" class="Blood-name">A+ is the second most common blood type</a>
+                        <form action="/Blood" method="post" style="margin-top: 10px;">
+                            <label for="quantity">Select no:</label>
+                            <input type="number" id="quantity" name="quantity" min="1" max="9" style="width: 80px; padding: 5px;">
+                            <br><br>
+                            <input type="checkbox" name="check" value="A+" onclick="this.form.submit()">
+                            <strong>A+ is your choose</strong></input>
+                        </form>
+                    </div>
+                </div>
+                <!-- end of single Blood -->
+                <!-- single Blood -->
+                <div class="Blood">
+                    <div class="Blood-content">
+                        <div class="Blood-img">
+                            <img src="/image/A-.jpg" alt="Blood image">
+                        </div>
+                    </div>
+
+                    <div class="Blood-info">
+                        <div class="Blood-info-top">
+                            <h2 class="sm-title">A- Group</h2>
+
+                        </div>
+                        <a href="#" class="Blood-name">A- is the universal platelet type</a>
+                        <form action="/Blood" method="post" style="margin-top: 10px;">
+                            <label for="quantity">Select no:</label>
+                            <input type="number" id="quantity" name="quantity" min="1" max="9" style="width: 80px; padding: 5px;">
+                            <br><br>
+                            <input type="checkbox" name="check" value="A-" onclick="this.form.submit()">
+                            <strong>A- is your choose</strong></input>
+                        </form>
+                    </div>
+                </div>
+                <!-- end of single Blood -->
+                <!-- single Blood -->
+                <div class="Blood">
+                    <div class="Blood-content">
+                        <div class="Blood-img">
+                            <img src="/image/B+.jpg" alt="Blood image">
+                        </div>
+                    </div>
+
+                    <div class="Blood-info">
+                        <div class="Blood-info-top">
+                            <h2 class="sm-title">B+ Group</h2>
+
+                        </div>
+                        <a href="#" class="Blood-name">only 8% donors are B+ but there is always need for it</a>
+                        <form action="/Blood" method="post" style="margin-top: 10px;">
+                            <label for="quantity">Select no:</label>
+                            <input type="number" id="quantity" name="quantity" min="1" max="9" style="width: 80px; padding: 5px;">
+                            <br><br>
+                            <input type="checkbox" name="check" value="B+" onclick="this.form.submit()">
+                            <strong>B+ is your choose</strong></input>
+                        </form>
+                    </div>
+                </div>
+                <!-- end of single Blood -->
+                <!-- single Blood -->
+                <div class="Blood">
+                    <div class="Blood-content">
+                        <div class="Blood-img">
+                            <img src="/image/B-.jpg" alt="Blood image">
+                        </div>
+                    </div>
+
+                    <div class="Blood-info">
+                        <div class="Blood-info-top">
+                            <h2 class="sm-title">B- Group</h2>
+
+                        </div>
+                        <a href="#" class="Blood-name">Only 2% donors are B- making it one of rarest blood types</a>
+                        <form action="/Blood" method="post" style="margin-top: 10px;">
+                            <label for="quantity">Select no:</label>
+                            <input type="number" id="quantity" name="quantity" min="1" max="9" style="width: 80px; padding: 5px;">
+                            <br><br>
+                            <input type="checkbox" name="check" value="B-" onclick="this.form.submit()">
+                            <strong>B- is your choose</strong></input>
+                        </form>
+                    </div>
+
+                </div>
+                <!-- end of single Blood -->
+                <!-- single Blood -->
+                <div class="Blood">
+                    <div class="Blood-content">
+                        <div class="Blood-img">
+                            <img src="/image/o+.jpg" alt="Blood image">
+                        </div>
+                    </div>
+
+                    <div class="Blood-info">
+                        <div class="Blood-info-top">
+                            <h2 class="sm-title">O+ Group</h2>
+
+                        </div>
+                        <a href="#" class="Blood-name">o+ is most common blood type</a>
+                        <form action="/Blood" method="post" style="margin-top: 10px;">
+                            <label for="quantity">Select no:</label>
+                            <input type="number" id="quantity" name="quantity" min="1" max="9" style="width: 80px; padding: 5px;">
+                            <br><br>
+                            <input type="checkbox" name="check" value="O+" onclick="this.form.submit()">
+                            <strong>O+ is your choose</strong></input>
+                        </form>
+                    </div>
+                </div>
+                <!-- end of single Blood -->
+                <!-- single Blood -->
+                <div class="Blood">
+                    <div class="Blood-content">
+                        <div class="Blood-img">
+                            <img src="/image/o-.jpg" alt="Blood image">
+                        </div>
+                    </div>
+
+                    <div class="Blood-info">
+                        <div class="Blood-info-top">
+                            <h2 class="sm-title">O- Group</h2>
+
+                        </div>
+                        <a href="#" class="Blood-name">o- donors are often called 'Universal donors'</a>
+                        <form action="/Blood" method="post" style="margin-top: 10px;">
+                            <label for="quantity">Select no:</label>
+                            <input type="number" id="quantity" name="quantity" min="1" max="9" style="width: 80px; padding: 5px;">
+                            <br><br>
+                            <input type="checkbox" name="check" value="O-" onclick="this.form.submit()">
+                            <strong>O- is your choose</strong></input>
+                        </form>
+                    </div>
+                </div>
+                <!-- end of single Blood -->
+                <!-- single Blood -->
+                <div class="Blood">
+                    <div class="Blood-content">
+                        <div class="Blood-img">
+                            <img src="/image/AB+.jpg" alt="Blood image">
+                        </div>
+                    </div>
+
+                    <div class="Blood-info">
+                        <div class="Blood-info-top">
+                            <h2 class="sm-title">AB+ Group</h2>
+
+                        </div>
+                        <a href="#" class="Blood-name">Around 2% donors have ab+ blood</a>
+                        <form action="/Blood" method="post" style="margin-top: 10px;">
+                            <label for="quantity">Select no:</label>
+                            <input type="number" id="quantity" name="quantity" min="1" max="9" style="width: 80px; padding: 5px;">
+                            <br><br>
+                            <input type="checkbox" name="check" value="AB+" onclick="this.form.submit()">
+                            <strong>AB+ is your choose</strong></input>
+                        </form>
+                    </div>
+                </div>
+                <!-- end of single Blood -->
+                <!-- single Blood -->
+                <div class="Blood">
+                    <div class="Blood-content">
+                        <div class="Blood-img">
+                            <img src="/image/AB-.jpg" alt="Blood image">
+                        </div>
+                    </div>
+
+                    <div class="Blood-info">
+                        <div class="Blood-info-top">
+                            <h2 class="sm-title">AB- Group</h2>
+
+                        </div>
+                        <a href="#" class="Blood-name">AB- is the rarest of all 8 blood types</a>
+                        <form action="/Blood" method="post" style="margin-top: 10px;">
+                            <label for="quantity">Select no:</label>
+                            <input type="number" id="quantity" name="quantity" min="1" max="9" style="width: 80px; padding: 5px;">
+                            <br><br>
+                            <input type="checkbox" name="check" value="AB-" onclick="this.form.submit()">
+                            <strong>AB- is your choose</strong></input>
+                        </form>
+                    </div>
+
+                </div>
+                <!-- end of single Blood -->
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-container">
+        <a class="linkedin" href="https://www.linkedin.com/">LinkedIn</a>
+        <a class="twitter" href="https://twitter.com/">Twitter</a>
+        <a class="koo" href="https://www.koo.com/">Koo</a>
+        <p>
+        <p class="copyright">© 2023 BLOOD HUB.</p>
+        </p>
+    </div>
+
+</body>
+
+<!-- javascript code for count button start-->
+
+
+<!--javascript code for count button ends-->
+
+</html>
