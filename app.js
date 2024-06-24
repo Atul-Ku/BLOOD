@@ -116,7 +116,7 @@ const DonorLogin = new mongoose.Schema({
         unique: true,
         required: 'Email address is required'
     },
-    Blood: {
+    BloodGroup: {
         type: String,
         required: true
     },
@@ -130,10 +130,6 @@ const DonorLogin = new mongoose.Schema({
     },
     pincode: {
         type: Number,
-        required: true
-    },
-    address: {
-        type: String,
         required: true
     }
 });
@@ -236,7 +232,7 @@ app.post("/AddBloodBank",function(req,res){
     const category=req.body.Category;
 
     const found = async () => {
-        const result = await BloodBank.find({ name: name.toLowerCase() });
+        const result = await BloodBank.find({ contact : phone });
         if (result.length == 0) {
             try {
                 const bank = new BloodBank({
@@ -279,14 +275,14 @@ app.post("/donor",function(req,res){
     const state=req.body.state;
     const pincode=req.body.pincode;
     const found = async () => {
-        const result = await Donor.find({ name: name.toLowerCase() });
+        const result = await Donor.find({ phone : phone });
         if (result.length == 0) {
             try {
                 const donor = new Donor({
                     name: name.toLowerCase(),
                     phone: phone,
                     email: email,
-                    bloodgroup: bloodgroup,
+                    BloodGroup: bloodgroup,
                     city: city,
                     state: state,
                     pincode: pincode
