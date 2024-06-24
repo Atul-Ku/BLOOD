@@ -1,11 +1,12 @@
 // jshint esversion:6
 
-const express = require("express")
-const app = express()
-const BodyParser = require("body-parser")
-const mongoose = require("mongoose")
+const express = require("express");
+const app = express();
+const BodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const states = require("./public/select")
 
-mongoose.connect("mongodb://localhost:27017/Bloodhub", {
+mongoose.connect("mongodb://127.0.0.1:27017/Bloodhub", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
@@ -28,8 +29,10 @@ const signSchema = new mongoose.Schema({
     password: {
         type: String,
         unique: true
-    }
-});
+    },
+}, 
+    { timestamps: true}
+);
 
 const Sign = new mongoose.model("Login", signSchema);
 
@@ -46,9 +49,96 @@ const requestSchema = new mongoose.Schema({
         type:String,
         required:true
     }
-})
+});
 
 const Request = new mongoose.model("bloodType", requestSchema);
+
+const BloodBankSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    hospital: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    district: {
+        type: String,
+        required: true
+    },
+    state: {
+        type: String,
+        required: true
+    },
+    contact: {
+        type: Number,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    website: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    contactPerson: {
+        type: String,
+        required: true
+    }
+});
+
+const BloodBank= new mongoose.model("bloodBank",BloodBankSchema);
+
+const DonorLogin = new mongoose.Schema({
+    name: {
+        type: String,
+        lowercase: true,
+        unique: true,
+        required: 'Email address is required'
+    },
+    phone: {
+        type: Number,
+        unique: true,
+        required: 'Phone number is required'
+    },
+    email: {
+        type: String,
+        lowercase: true,
+        unique: true,
+        required: 'Email address is required'
+    },
+    Blood: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    state: {
+        type: String,
+        required: true
+    },
+    pincode: {
+        type: Number,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
+    }
+});
+
+const Donor = new mongoose.model("Donor", DonorLogin);
 
 const HOSPITAL=[];
 var Hosname;
@@ -94,12 +184,8 @@ app.get("/signup", function (req, res) {
 })
 
 app.get("/AddBloodBank", function (req, res) {
-    res.render("AddBloodBank")
-})
-
-app.get("/index", function (req, res) {
-    res.render("index")
-})
+    res.render("AddBloodBank",{stateDistricts:states.stateDistricts})
+});
 
 app.get("/index", function (req, res) {
     res.render("index")
@@ -135,39 +221,90 @@ app.post("/blood", function (req, res) {
         res.redirect("/contactform")
     }
     requestBlood();
-})
+});
 
-app.get("/A1", function (req, res) {
-    res.render("A1")
-})
+app.post("/AddBloodBank",function(req,res){
+    const name=req.body.BloodBank;
+    const state=req.body.state;
+    const district=req.body.district;
+    const city=req.body.city;
+    const phone=req.body.phone;
+    const email=req.body.Email;
+    const website=req.body.Website;
+    const hospitalname=req.body.Parent;
+    const contactPerson=req.body.person;
+    const category=req.body.Category;
 
-app.get("/A2", function (req, res) {
-    res.render("A2")
-})
+    const found = async () => {
+        const result = await BloodBank.find({ name: name.toLowerCase() });
+        if (result.length == 0) {
+            try {
+                const bank = new BloodBank({
+                    name: name.toLowerCase(),
+                    state: state,
+                    district: district,
+                    city: city,
+                    contact: phone,
+                    email: email,
+                    website: website,
+                    hospital: hospitalname,
+                    contactPerson: contactPerson,
+                    category: category
+                })
+                bank.save();
+                console.log(name.toLowerCase());
+                res.redirect("/");
+            } 
+            catch (err) {
+                console.log(err);
+            }
+        }
+        else {
+            res.redirect("/");
+        }
+    }
+    found();
+});
 
-app.get("/contactformB2", function (req, res) {
-    res.render("B2")
-})
+app.get("/donor",function(req,res){
+    res.render("Donor");
+});
 
-app.get("/contactformB1", function (req, res) {
-    res.render("B1")
-})
-
-app.get("/AB2", function (req, res) {
-    res.render("AB2")
-})
-
-app.get("/AB1", function (req, res) {
-    res.render("AB1")
-})
-
-app.get("/O2", function (req, res) {
-    res.render("O2")
-})
-
-app.get("/O1", function (req, res) {
-    res.render("O1")
-})
+app.post("/donor",function(req,res){
+    const name=req.body.name;
+    const phone=req.body.phone;
+    const email=req.body.Email;
+    const bloodgroup=req.body.Blood;
+    const city=req.body.city;
+    const state=req.body.state;
+    const pincode=req.body.pincode;
+    const found = async () => {
+        const result = await Donor.find({ name: name.toLowerCase() });
+        if (result.length == 0) {
+            try {
+                const donor = new Donor({
+                    name: name.toLowerCase(),
+                    phone: phone,
+                    email: email,
+                    bloodgroup: bloodgroup,
+                    city: city,
+                    state: state,
+                    pincode: pincode
+                });
+                donor.save();
+                console.log(name.toLowerCase());
+                res.redirect("/");
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+        else {
+            res.redirect("/");
+        }
+    }
+    found();
+});
 
 app.post("/signup", function (req, res) {
     const signItem1 = req.body.Email;
