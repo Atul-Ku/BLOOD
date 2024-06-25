@@ -189,7 +189,11 @@ app.get("/index", function (req, res) {
 
 app.get("/contactform", function (req, res) {
     res.render("contactform")
-})
+});
+
+app.get("/Donation", function (req, res) {
+    res.render("Donation")
+});
 
 app.post("/index", function (req, res) {
     const Hostital=req.body.Hospital;

@@ -5,7 +5,7 @@ body {
   
   .signup-box {
     width: 360px;
-    height: 620px;
+    height: 598px;
     margin: auto;
     background-color: white;
     border-radius: 40px;
@@ -14,7 +14,7 @@ body {
   .login-box {
     width: 360px;
     height: 280px;
-    margin: auto;
+    margin-left: 37%;
     border-radius: 40px;
     background-color: white;
   }
@@ -50,7 +50,7 @@ body {
   input[type="button"] {
     width: 320px;
     height: 35px;
-    margin-top: 20px;
+    margin-top: 10px;
     border: none;
     background-color: #49c1a2;
     color: white;
@@ -75,7 +75,7 @@ body {
   }
   .background-image{
     width: 100%;
-    height: 100vh;
+    height: 99.92vh;
     background-image: url(bimg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
