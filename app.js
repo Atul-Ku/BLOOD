@@ -4,7 +4,9 @@ const express = require("express");
 const app = express();
 const BodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const states = require("./public/select")
+const states = require("./public/select");
+const dotenv = require('dotenv').config();
+// mongoose.set('strictQuery', false);
 
 mongoose.connect("mongodb://127.0.0.1:27017/Bloodhub", {
     useNewUrlParser: true,
@@ -336,9 +338,25 @@ app.post("/contactform", function (req, res) {
 })
 
 app.post("/login", function (req, res) {
-    res.redirect("/")
-})
+    const email=req.body.Email;
+    const found = async () => {
+        const result = await Sign.find({ email: email });
+        if (result.length == 0) {
+            succ.succ();
+            res.redirect("/signup");
+        }
+        else {
+            succ.succ();
+            res.redirect("/");
+        }
+    }
+    found();
+});
 
-app.listen(3000, function (req, res) {
-    console.log("Server has started at 3000 port");
+let port;
+
+process.env.STATUS==="Dev" ? (port = process.env.DEV_PORT) : (port= process.env.PROD_PORT);
+
+app.listen(port , function (req, res) {
+    console.log(`Server is in ${process.env.STATUS} mode, listen on port ${port}`);
 })

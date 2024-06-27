@@ -7,6 +7,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+          const len=<%- result.length %>;
+          if(len==0){
+            alert("Please Register First");
+            window.location.href = "/signup";
+          }
+          else{
+            alert("you have successfully logged in");
+            window.location.href = "/"; 
+          }
+      })
+    </script>
 </head>
 <div>
   <div class="background-image">
@@ -17,7 +30,7 @@
         <input type="email" name="Email" placeholder="Mention Email" required />
         <label>Password</label>
         <input type="password" name="Password" placeholder="Mention Password" required />
-        <button class="btn bg-primary text-light mt-4 mb-2" type="submit" style="margin-left: 120px;">Login</button>
+        <button class="btn bg-primary text-light mt-4 mb-2" type="submit" style="margin-left: 120px;" onclick="showAlertAndRedirect()">Login</button>
       </form>
     </div>
     <p class="para-2">
