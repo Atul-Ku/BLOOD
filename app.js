@@ -141,6 +141,8 @@ const Donor = new mongoose.model("Donor", DonorLogin);
 const HOSPITAL=[];
 var Hosname;
 
+// Get routes for pages
+
 app.get("/", function (req, res) {
     res.render("home")
 })
@@ -187,7 +189,12 @@ app.get("/AddBloodBank", function (req, res) {
 
 app.get("/index", function (req, res) {
     res.render("index")
-})
+});
+
+app.get("/Directory", async function (req, res) {
+    const result = await BloodBank.find({});
+    res.render("Directory",{stateDistricts:states.stateDistricts, bloodBanks: result ,searchPerformed: false});
+});
 
 app.get("/contactform", function (req, res) {
     res.render("contactform")
@@ -197,17 +204,23 @@ app.get("/Donation", function (req, res) {
     res.render("Donation")
 });
 
+app.get("/blood", function (req, res) {
+    res.render("Blood",{HOSNAME:Hosname});
+});
+
+app.get("/donor",function(req,res){
+    res.render("Donor");
+});
+
+// Post routes for pages.
+
 app.post("/index", function (req, res) {
     const Hostital=req.body.Hospital;
     console.log(Hostital);
     Hosname=Hostital;
     HOSPITAL.push(Hostital);
     res.redirect("/blood")
-})
-
-app.get("/blood", function (req, res) {
-    res.render("Blood",{HOSNAME:Hosname});
-})
+});
 
 app.post("/blood", function (req, res) {
     const getcheck=req.body.check;
@@ -252,7 +265,7 @@ app.post("/AddBloodBank",function(req,res){
                     hospital: hospitalname,
                     contactPerson: contactPerson,
                     category: category
-                })
+                });
                 bank.save();
                 console.log(name.toLowerCase());
                 res.redirect("/");
@@ -266,10 +279,6 @@ app.post("/AddBloodBank",function(req,res){
         }
     }
     found();
-});
-
-app.get("/donor",function(req,res){
-    res.render("Donor");
 });
 
 app.post("/donor",function(req,res){
@@ -331,24 +340,32 @@ app.post("/signup", function (req, res) {
         }
     }
     found();
-})
+});
 
 app.post("/contactform", function (req, res) {
     res.redirect("/")
-})
+});
 
 app.post("/login", function (req, res) {
     const email=req.body.Email;
     const found = async () => {
         const result = await Sign.find({ email: email });
         if (result.length == 0) {
-            succ.succ();
             res.redirect("/signup");
         }
         else {
-            succ.succ();
             res.redirect("/");
         }
+    }
+    found();
+});
+
+app.post("/Directory",function(req,res){
+    const state=req.body.state;
+    const district=req.body.district;
+    const found = async () => {
+        const result = await BloodBank.find({ state: state, district: district});
+        res.render("Directory", {stateDistricts:states.stateDistricts, bloodBanks: result ,searchPerformed: true});
     }
     found();
 });
@@ -358,5 +375,5 @@ let port;
 process.env.STATUS==="Dev" ? (port = process.env.DEV_PORT) : (port= process.env.PROD_PORT);
 
 app.listen(port , function (req, res) {
-    console.log(`Server is in ${process.env.STATUS} mode, listen on port ${port}`);
+    console.log(`App is in ${process.env.STATUS} mode, listen on port ${port}`);
 })

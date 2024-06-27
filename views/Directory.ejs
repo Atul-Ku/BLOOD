@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Blood Bank Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Blood Bank Directory</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -14,7 +15,7 @@
             const stateSelect = document.getElementById('state');
             const districtSelect = document.getElementById('district');
 
-            stateSelect.addEventListener('change', function() {
+            stateSelect.addEventListener('change', function () {
                 const selectedState = this.value;
                 const districts = stateDistricts[selectedState];
 
@@ -53,7 +54,7 @@
             <button class="dropbtn1">LOOKING FOR BLOOD</button>
             <div class="dropdown1-content">
                 <a href="/index" target="_blank">Blood Availability</a>
-                <a href="/Directory" target="_blank">Blood Bank Directory</a>
+                <a href="/Directory">Blood Bank Directory</a>
             </div>
         </div>
         <div class="dropdown2">
@@ -73,88 +74,79 @@
     </div>
 
     <div class="container mt-3">
-        <h2 class="text-danger">Blood Bank Details</h2>
+        <h2 class="text-danger">All Blood Bank Info</h2>
         <hr>
     </div>
 
-    <form action="/AddBloodBank" method="post" class="container shadow rounded mt-2 mb-2 pt-lg-4 pb-lg-4">
-        <div class="container shadow rounded">
-            <fieldset>
-                <legend>Blood Bank Address:</legend>
-                <label class="ms-4" for="state"><strong>State:</strong></label>
+    <form action="/Directory" method="post" class="container shadow rounded mt-2 mb-2 pt-lg-4 pb-lg-4">
+        <div class="container shadow rounded ">
+            <fieldset style="display: inline;">
+                <legend>Select Your State and District:-</legend>
+                <label class="ms-5 me-3" for="state"><strong>State:</strong></label>
                 &nbsp; &nbsp; &nbsp;
-                <select style="width: 250px;" class="mb-2 me-3 mt-1 rounded shadow border-primary p-1" name="state" id="state"
-                    aria-label="Select State" required>
-                        <option value="">--Select State--</option>
-                        <% Object.keys(stateDistricts).forEach(function(state) { %>
-                            <option value="<%= state %>"><%= state %></option>
+                <select style="width: 250px;" class="mb-2 me-5 mt-1 rounded shadow border-primary p-1" name="state"
+                    id="state" aria-label="Select State" required>
+                    <option value="">--Select State--</option>
+                    <% Object.keys(stateDistricts).forEach(function(state) { %>
+                        <option value="<%= state %>">
+                            <%= state %>
+                        </option>
                         <% }); %>
                 </select>
 
-                <label class="ms-3" for="district"><strong>District:</strong></label>
-                <select style="width: 250px;" class="ms-4 me-4 mt-1 rounded shadow border-primary p-1" name="district" id="district"
-                    aria-label="Select State" required>
+                <label class="ms-3 me-3" for="district"><strong>District:</strong></label>
+                <select style="width: 250px;" class="ms-4 me-5 mt-1 rounded shadow border-primary p-1" name="district"
+                    id="district" aria-label="Select State" required>
                     <option value="">--Select District--</option>
                 </select>
-
-                <label for="city"><strong>City:</strong></label>
-                <input style="width: 250px;" class="ms-4 border-1 rounded shadow border-primary p-1" type="text" placeholder="Mention City" name="city" id="city">
+                <button type="submit" class="btn btn-danger mt-3 ps-3 pe-3 ms-5 mb-4 text-center">Search</button>
             </fieldset>
-        </div>
-
-        <div class="container shadow rounded mt-5 pt-2 mb-2">
-            <fieldset>
-                <legend>Blood Bank Details:</legend>
-                <label class="mt-3 ms-2" for="BloodBank"><strong>
-                        <h5>Blood Bank Name:</h5>
-                    </strong></label>
-                <input class="rounded ms-4 border-primary border-1 shadow w-25" type="text" name="BloodBank"
-                    id="BloodBankName" placeholder="Mention Name" required>
-                <label class="mt-3 ms-5 me-lg-4" for="Parenthospital"><strong>
-                        <h5>Parent Hospital Name:</h5>
-                    </strong></label>
-                <input class="rounded ms-4 border-primary border-1 shadow w-25" type="text" name="Parent"
-                    id="Parenthospital" placeholder="Mention Name" required>
-                <br><br>
-                <label class="mt-3 ms-2" for="Category"><strong>
-                        <h5>Category:</h5>
-                    </strong></label>
-                <select class="ms-lg-4 w-25 shadow rounded-1 border-primary p-1" name="Category" id="Category">
-                    <option value="select category">select category</option>
-                    <option value="Govt">Govt.</option>
-                    <option value="Red-Cross">Red Cross</option>
-                    <option value="Charitable">Charitable/Vol</option>
-                    <option value="Private">Private</option>
-                </select>
-                <label class="mt-3 ms-5" for="Contact Person"><strong>
-                        <h5>Contact Person:</h5>
-                    </strong></label>
-                <input class="rounded ms-5 border-primary border-1 shadow w-25" type="text" name="person" id="Person"
-                    placeholder="Mention Person Name" required>
-                <br><br>
-                <label class="mt-3 ms-2 me-lg-4 mb-3" for="Email"><strong>
-                        <h5>Email:</h5>
-                    </strong></label>
-                <input class="rounded ms-4 border-primary border-1 shadow w-25" type="email" name="Email" id="Email"
-                    placeholder="Mention Email" required>
-                <label class="mt-3 ms-5 me-lg-4 mb-3" for="Contact Number"><strong>
-                        <h5>Contact No.:</h5>
-                    </strong></label>
-                <input class="rounded ms-4 border-primary border-1 shadow w-25" type="number" name="phone" id="phone"
-                    placeholder="Mention Number" required>
-                <br>
-                <label class="mt-3 ms-3 me-lg-4 mb-3" for="Website"><strong>
-                        <h5>Website:</h5>
-                    </strong></label>
-                <input class="rounded ms-4 border-primary border-1 shadow w-25" type="text" name="Website" id="Website"
-                    placeholder="Mention Website" required>
-            </fieldset>
-        </div>
-        <div class="text-center">
-            <button type="submit" class="btn btn-danger mt-3 ps-3 pe-3 m-auto">ADD</button>
-            <button type="reset" class="btn btn-danger mt-3 ps-3 pe-3 m-auto">CANCEL</button>
         </div>
     </form>
+    <% if (searchPerformed) { %>
+        <div class="container shadow-lg rounded mt-2 mb-2 pt-lg-4 pb-lg-4">
+            <h2 class="ms-2">Search Results</h2>
+            <ul>
+                <% if (bloodBanks.length===0) { %>
+                    <li>No blood banks found in this district.</li>
+                <% } else { %>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">S.No.</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Hospital</th>
+                                    <th scope="col">Contact</th>
+                                    <th scope="col">State</th>
+                                    <th scope="col">District</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Donate Blood</th>
+                                    <th scope="col">Request Blood</th>
+                                </tr>
+                            </thead>
+                            <% let i=0; %>
+                            <% bloodBanks.forEach(bloodBank=> { %>
+                                <tbody>
+                                    <tr>
+                                        <td><%= ++i %>.</td>
+                                        <td><%= bloodBank.name %></t>
+                                        <td><%= bloodBank.hospital %></td>
+                                        <td><%= bloodBank.contact %></td>
+                                        <td><%= bloodBank.state %></td>
+                                        <td><%= bloodBank.district %></td>
+                                        <td><%= bloodBank.email %></td>
+                                        <td><%= bloodBank.category %></td>
+                                        <td><a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/Donation">Donate</a></td>
+                                        <td><a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/index">Request</a></td>
+                                    </tr>
+                                </tbody>
+                            <% }) %>
+                      </table>
+                <% } %>
+            </ul>
+        </div>
+    <% } %>
 
     <div class="auto-container sitemap bg-dark">
         <div class="row clearfix ms-3">
@@ -162,7 +154,7 @@
                 <h3 class="text-left text-warning m-3 ms-4">Looking for Blood</h3>
                 <ul style='line-height:165%'>
                     <li><a href='/index' target="_blank">Blood Availability</a></li>
-                    <li><a href='/Directory' target="_blank">Blood Bank Directory</a></li>
+                    <li><a href='/Directory'>Blood Bank Directory</a></li>
                 </ul>
             </div>
             <div class='col-md-3 col-sm-12 col-xs-12  wow bounceInLeft'>
@@ -178,11 +170,10 @@
                 <h3 class='text-left text-warning m-3 ms-3'>Blood Bank Login</h3>
                 <ul style='line-height:165%'>
                     <li><a href='/login'>Blood Hub Login</a></li>
-                    <li><a href='/AddBloodBank'>Add your Blood Bank</a>
+                    <li><a href='/AddBloodBank' target="_blank">Add your Blood Bank</a>
                     </li>
                 </ul>
             </div>
-
             <div class='col-md-3 col-sm-12 col-xs-12  wow bounceInLeft mb-4'>
                 <h3 class='text-left text-warning m-3 ms-5'>About Us</h3>
                 <ul style='line-height:165%'>
@@ -213,7 +204,9 @@
         </div>
     </div>
     <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     </script>
 </body>
 
